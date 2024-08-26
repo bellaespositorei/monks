@@ -1,7 +1,8 @@
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import type { ClassValue } from "clsx";
-import { Artist } from "./schemas";
+import { Artist } from "./schemas/artist";
+import { SubmitReportPayload } from "./schemas/report";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -29,3 +30,16 @@ export const getTopGenres = (artists: Artist[]) => {
 
 export const getArtistsByGenre = (artists: Artist[], genre: string) =>
   artists.filter(({ genres }) => genres.includes(genre));
+
+const getPopArtist = ({ name, followers }: Artist) => ({
+  artist_name: name,
+  followers: followers.total.toString(),
+});
+
+export const getSubmitReportPayload = (
+  artists: Artist[],
+  topGenres: string[]
+): SubmitReportPayload => ({
+  pop_ranking: artists.map(getPopArtist),
+  genre_ranking: topGenres,
+});

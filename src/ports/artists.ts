@@ -1,6 +1,4 @@
-"use server";
-
-import { ArtistResponse, ArtistsResponse } from "@/lib/schemas";
+import { ArtistResponse, ArtistsResponse } from "@/lib/schemas/artist";
 
 export const getArtists = async (
   token: string,

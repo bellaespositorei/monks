@@ -1,6 +1,6 @@
 "use server";
 
-import { TokenResponse } from "@/lib/schemas";
+import { TokenResponse } from "@/lib/schemas/token";
 import { clientId, clientSecret } from "@/server/config";
 
 const getAuthorization = () => {
@@ -24,7 +24,7 @@ export const getToken = async () => {
       }).toString(),
       next: {
         revalidate: 3600,
-      }
+      },
     });
 
     return TokenResponse.parse(await response.json());

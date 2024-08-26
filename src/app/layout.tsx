@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto_Serif } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Roboto_Serif({ subsets: ["latin"] });
 
@@ -17,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("bg-green-light", inter.className)}>{children}</body>
+      <body className={cn("bg-green-light", inter.className)}>
+        <main>{children}</main>
+        <Toaster />
+      </body>
     </html>
   );
 }
